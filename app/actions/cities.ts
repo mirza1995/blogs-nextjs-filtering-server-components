@@ -1,17 +1,15 @@
-"use server";
+'use server';
 
-import { cities } from "@/data/cities";
+import { cities } from '@/data/cities';
 
-
-export async function getCities(
-  search?: string,
-  sort?: string,
-) {
+export async function getCities(search?: string, sort?: string) {
+  await new Promise(resolve => setTimeout(resolve, 1000));
   const searchTerm = search?.toLowerCase() || '';
 
-  const filteredCities = cities.filter(city => 
-    city.name.toLowerCase().includes(searchTerm) || 
-    city.country.toLowerCase().includes(searchTerm)
+  const filteredCities = cities.filter(
+    city =>
+      city.name.toLowerCase().includes(searchTerm) ||
+      city.country.toLowerCase().includes(searchTerm)
   );
 
   return filteredCities.sort((a, b) => {
@@ -22,7 +20,7 @@ export async function getCities(
     } else if (sort === 'country-desc') {
       return b.country.localeCompare(a.country);
     }
-    
+
     return a.name.localeCompare(b.name);
   });
 }

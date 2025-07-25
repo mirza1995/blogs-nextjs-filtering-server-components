@@ -1,5 +1,6 @@
-import { CitiesList } from '@/components/CitiesList';
+import { CitiesListServerFetch } from '@/components/CitiesListServerFetch';
 import { getCities } from './actions/cities';
+import { CitiesListClientFetch } from '@/components/CitiesListClientFetch';
 
 type SearchParams = {
   search?: string;
@@ -21,7 +22,8 @@ export default async function Home({
           Cities Directory
         </h2>
       </div>
-      <CitiesList cities={cities} searchParams={params} />
+      <CitiesListServerFetch cities={cities} searchParams={params} />
+      {/* <CitiesListClientFetch initialCities={cities} searchParams={params} /> */}
     </div>
   );
 }
